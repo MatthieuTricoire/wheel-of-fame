@@ -1,0 +1,32 @@
+$highProbability: #ffd0d0;
+$mediumProbability: #ffe9d0;
+$lowProbability: #d1ffd0;
+
+.student {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  padding-inline: 10px;
+  padding-block: 4px;
+  width: auto;
+  border-radius: 5px;
+  cursor: pointer;
+  &:hover {
+    scale: 1.05;
+  }
+
+  .probability {
+    font-size: 0.8rem;
+    font-style: italic;
+  }
+}
+
+.high-probability {
+  background: $highProbability;
+}
+.medium-probability {
+  background: $mediumProbability;
+}
+.low-probability {
+  background: $lowProbability;
+}

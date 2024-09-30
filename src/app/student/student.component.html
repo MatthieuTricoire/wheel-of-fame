@@ -1,0 +1,14 @@
+<div
+  class="student"
+  (click)="onSelect()"
+  [ngClass]="
+    student().hasReviewed < 3
+      ? 'high-probability'
+      : student().hasReviewed > 6
+        ? 'low-probability'
+        : 'medium-probability'
+  "
+>
+  <div>{{ student().name }}</div>
+  <div class="probability">{{ 100 - student().hasReviewed * 10 }} %</div>
+</div>
