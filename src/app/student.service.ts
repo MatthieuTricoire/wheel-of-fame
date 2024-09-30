@@ -27,6 +27,7 @@ export class StudentService {
 
   resetStudents() {
     this.students.forEach((s) => (s.hasReviewed = 0));
+    this.saveStudentsToLocalStorage();
   }
 
   updateStudentToReview(student: Student) {
