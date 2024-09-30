@@ -25,6 +25,9 @@ h1 {
     &:hover {
       background: darken($color: #efefef, $amount: 1);
     }
+    &:active {
+      scale: 1.05;
+    }
   }
 
   .students {

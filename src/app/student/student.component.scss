@@ -14,6 +14,9 @@ $lowProbability: #d1ffd0;
   &:hover {
     scale: 1.05;
   }
+  &:active {
+    scale: 1;
+  }
 
   .probability {
     font-size: 0.8rem;
