@@ -7,7 +7,7 @@ import { STUDENTS } from './data/students';
 })
 export class StudentService {
   students: Student[] = STUDENTS;
-  PROBABILITY_OF_SKIPPING_PER_REVIEW = 0.2;
+  PROBABILITY_OF_SKIPPING_PER_REVIEW = 0.1;
 
   constructor() {
     this.loadStudentsFromLocalStorage();
