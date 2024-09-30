@@ -15,6 +15,8 @@ export class AppComponent {
   constructor(private studentService: StudentService) {}
 
   selectedStudent: Student | null = null;
+  displayStudent: Student | null = null;
+  isDrawing = false;
 
   get students() {
     return this.studentService.students;
@@ -26,10 +28,6 @@ export class AppComponent {
 
   handleVoluntaryStudent(voluntaryStudent: Student) {
     this.selectedStudent = voluntaryStudent;
-  }
-
-  randomStudentToReview() {
-    this.selectedStudent = this.studentService.randomStudentToReview();
   }
 
   confirmStudentReview() {
@@ -47,5 +45,27 @@ export class AppComponent {
   saveStudentsToLocalStorage() {
     const studentsToSave = JSON.stringify(this.students);
     localStorage.setItem('students', studentsToSave);
+  }
+
+  randomStudentToReview() {
+    this.selectedStudent = null;
+    this.isDrawing = true;
+    const initialSpeed = 80;
+    const decelerationSpeed = 5;
+    const maxTime = 3000;
+
+    this.studentService.fakelRandomSelection(
+      initialSpeed,
+      maxTime,
+      decelerationSpeed,
+
+      (student: Student) => {
+        this.displayStudent = student;
+      },
+      (selectedStudent: Student | null) => {
+        this.isDrawing = false;
+        this.selectedStudent = selectedStudent;
+      },
+    );
   }
 }

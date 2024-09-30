@@ -52,4 +52,33 @@ export class StudentService {
       ? candidates[Math.floor(Math.random() * candidates.length)]
       : null;
   }
+
+  fakelRandomSelection(
+    initialSpeed: number,
+    maxTime: number,
+    decelerationFactor: number,
+    updateDisplayCallback: (student: Student) => void,
+    onCompleteCallback: (selectedStudent: Student | null) => void,
+  ) {
+    const startTime = Date.now();
+
+    const recursiveSelection = (currentSpeed: number) => {
+      const elapsedTime = Date.now() - startTime;
+
+      if (elapsedTime > maxTime) {
+        const selectedStudent = this.randomStudentToReview();
+        onCompleteCallback(selectedStudent);
+      } else {
+        const randomIndex = Math.floor(Math.random() * this.students.length);
+        updateDisplayCallback(this.students[randomIndex]);
+
+        const newSpeed = currentSpeed + decelerationFactor;
+
+        setTimeout(() => {
+          recursiveSelection(newSpeed);
+        }, currentSpeed);
+      }
+    };
+    recursiveSelection(initialSpeed);
+  }
 }

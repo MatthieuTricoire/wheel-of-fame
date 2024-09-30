@@ -18,6 +18,13 @@
 
     <button (click)="randomStudentToReview()" class="randomBtn">🙈</button>
 
+    @if (isDrawing && displayStudent) {
+      <div class="selected-student">
+        <h2>{{ displayStudent.name }}</h2>
+        <!-- <p>{{ displayStudent.name }}</p> -->
+      </div>
+    }
+
     @if (selectedStudent) {
       <div class="selected-student">
         <h2>{{ selectedStudent.name }}</h2>
