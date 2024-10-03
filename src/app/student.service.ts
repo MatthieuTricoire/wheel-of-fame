@@ -6,7 +6,7 @@ import { STUDENTS } from './data/students';
   providedIn: 'root',
 })
 export class StudentService {
-  students: Student[] = STUDENTS;
+  students: Student[] = this.sortStudent(STUDENTS);
   PROBABILITY_OF_SKIPPING_PER_REVIEW = 0.1;
 
   constructor() {
@@ -16,7 +16,7 @@ export class StudentService {
   loadStudentsFromLocalStorage() {
     const savedStudents = localStorage.getItem('students');
     if (savedStudents) {
-      this.students = JSON.parse(savedStudents);
+      this.students = this.sortStudent(JSON.parse(savedStudents));
     }
   }
 
@@ -52,6 +52,12 @@ export class StudentService {
     return candidates.length > 0
       ? candidates[Math.floor(Math.random() * candidates.length)]
       : null;
+  }
+
+  sortStudent(students: Student[]) {
+    return students.sort((a, b) => {
+      return a.name.localeCompare(b.name);
+    });
   }
 
   fakelRandomSelection(
